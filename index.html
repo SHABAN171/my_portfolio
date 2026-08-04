@@ -152,17 +152,23 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5r
 .ci:hover .ci-val{color:var(--tp)}
 
 /* FORM */
-.form-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:2rem;display:flex;flex-direction:column;gap:12px}
+.form-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:2rem;display:flex;flex-direction:column;gap:12px;transition:border-color 0.3s}
+.form-card:focus-within{border-color:var(--border2)}
 .form-title{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--g);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.5rem}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.finput{width:100%;padding:10px 14px;background:rgba(0,255,65,0.03);border:1px solid var(--border);border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--tp);outline:none;transition:border-color 0.2s;resize:none}
+.finput{width:100%;padding:10px 14px;background:rgba(0,255,65,0.03);border:1px solid var(--border);border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--tp);outline:none;transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;resize:none}
 .finput::placeholder{color:var(--tf)}
-.finput:focus{border-color:var(--g3)}
+.finput:hover{border-color:var(--border2)}
+.finput:focus{border-color:var(--g2);background:rgba(0,255,65,0.05);box-shadow:0 0 0 3px rgba(0,255,65,0.07)}
 textarea.finput{min-height:110px}
-.form-btn{font-family:'JetBrains Mono',monospace;font-size:11px;padding:11px 24px;border-radius:3px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--g);background:rgba(0,255,65,0.08);color:var(--g);transition:background 0.2s;align-self:flex-start;display:flex;align-items:center;gap:8px}
-.form-btn:hover{background:rgba(0,255,65,0.18)}
-.form-btn:disabled{opacity:0.5;cursor:not-allowed}
-.form-status{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.03em;min-height:14px}
+.form-btn{font-family:'JetBrains Mono',monospace;font-size:11px;padding:11px 24px;border-radius:3px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--g);background:rgba(0,255,65,0.08);color:var(--g);transition:background 0.2s,box-shadow 0.2s,transform 0.2s;align-self:flex-start;display:flex;align-items:center;gap:8px}
+.form-btn:hover{background:rgba(0,255,65,0.18);box-shadow:0 0 20px rgba(0,255,65,0.12);transform:translateY(-1px)}
+.form-btn:active{transform:translateY(0)}
+.form-btn:disabled{opacity:0.5;cursor:not-allowed;box-shadow:none;transform:none}
+.form-btn .ti-loader-2{animation:spin 0.7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.form-status{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.03em;min-height:14px;opacity:0;transition:opacity 0.25s}
+.form-status:not(:empty){opacity:1}
 .form-status.ok{color:var(--g)}
 .form-status.err{color:#ff5c5c}
 
@@ -556,7 +562,9 @@ if(contactForm){
       formStatus.className='form-status err';
       return;
     }
+    const btnIcon=submitBtn.querySelector('i');
     submitBtn.disabled=true;
+    btnIcon.className='ti ti-loader-2';
     formStatus.textContent='Sending...';
     formStatus.className='form-status';
     try{
@@ -579,6 +587,7 @@ if(contactForm){
       formStatus.className='form-status err';
     }finally{
       submitBtn.disabled=false;
+      btnIcon.className='ti ti-send';
     }
   });
 }
