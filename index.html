@@ -161,6 +161,10 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5r
 textarea.finput{min-height:110px}
 .form-btn{font-family:'JetBrains Mono',monospace;font-size:11px;padding:11px 24px;border-radius:3px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;border:1px solid var(--g);background:rgba(0,255,65,0.08);color:var(--g);transition:background 0.2s;align-self:flex-start;display:flex;align-items:center;gap:8px}
 .form-btn:hover{background:rgba(0,255,65,0.18)}
+.form-btn:disabled{opacity:0.5;cursor:not-allowed}
+.form-status{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.03em;min-height:14px}
+.form-status.ok{color:var(--g)}
+.form-status.err{color:#ff5c5c}
 
 /* ══ FOOTER ══ */
 footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
@@ -466,16 +470,19 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
       </div>
     </div>
     <div class="reveal reveal-delay-2">
-      <div class="form-card">
+      <form class="form-card" id="contact-form">
         <div class="form-title">Send a message</div>
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY"/>
+        <input type="checkbox" name="botcheck" class="hidden-field" style="display:none"/>
         <div class="form-row">
-          <input class="finput" type="text" placeholder="your name"/>
-          <input class="finput" type="email" placeholder="your@email.com"/>
+          <input class="finput" type="text" name="name" placeholder="your name" required/>
+          <input class="finput" type="email" name="email" placeholder="your@email.com" required/>
         </div>
-        <input class="finput" type="text" placeholder="subject"/>
-        <textarea class="finput" placeholder="tell me about your project or idea..."></textarea>
-        <button class="form-btn" type="button"><i class="ti ti-send"></i> Send message</button>
-      </div>
+        <input class="finput" type="text" name="subject" placeholder="subject"/>
+        <textarea class="finput" name="message" placeholder="tell me about your project or idea..." required></textarea>
+        <button class="form-btn" type="submit"><i class="ti ti-send"></i> Send message</button>
+        <div class="form-status" id="form-status"></div>
+      </form>
     </div>
   </div>
 </section>
@@ -535,6 +542,46 @@ const barObs=new IntersectionObserver((entries)=>{
   });
 },{threshold:0.3});
 document.querySelectorAll('.skills-wrap').forEach(el=>barObs.observe(el));
+
+// Contact form
+const contactForm=document.getElementById('contact-form');
+const formStatus=document.getElementById('form-status');
+if(contactForm){
+  contactForm.addEventListener('submit',async(e)=>{
+    e.preventDefault();
+    const submitBtn=contactForm.querySelector('.form-btn');
+    const accessKey=contactForm.querySelector('[name="access_key"]').value;
+    if(!accessKey||accessKey==='YOUR_WEB3FORMS_ACCESS_KEY'){
+      formStatus.textContent='Form is not configured yet — missing access key.';
+      formStatus.className='form-status err';
+      return;
+    }
+    submitBtn.disabled=true;
+    formStatus.textContent='Sending...';
+    formStatus.className='form-status';
+    try{
+      const res=await fetch('https://api.web3forms.com/submit',{
+        method:'POST',
+        headers:{'Accept':'application/json'},
+        body:new FormData(contactForm)
+      });
+      const data=await res.json();
+      if(res.ok&&data.success){
+        formStatus.textContent='Message sent — thanks! I\'ll get back to you soon.';
+        formStatus.className='form-status ok';
+        contactForm.reset();
+      } else {
+        formStatus.textContent=data.message||'Something went wrong. Please try again.';
+        formStatus.className='form-status err';
+      }
+    }catch(err){
+      formStatus.textContent='Network error. Please try again later.';
+      formStatus.className='form-status err';
+    }finally{
+      submitBtn.disabled=false;
+    }
+  });
+}
 </script>
 </body>
 </html>
