@@ -28,9 +28,18 @@ body::after{content:'';position:fixed;top:-20%;left:50%;transform:translateX(-50
 main{position:relative;z-index:1}
 
 /* ══ NAV ══ */
-nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:58px;border-bottom:1px solid var(--g3);background:rgba(7,11,7,0.98);position:sticky;top:0;z-index:200;backdrop-filter:blur(12px)}
-.nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--g);letter-spacing:0.04em;display:flex;align-items:center;gap:6px}
-.nav-logo-bracket{color:var(--g2);font-size:16px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:58px;border-bottom:1px solid var(--g3);background:rgba(7,11,7,0.98);position:sticky;top:0;z-index:200;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--g);letter-spacing:0.04em;display:flex;align-items:center;gap:9px;text-decoration:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.nav-logo-mark{position:relative;width:30px;height:30px;flex-shrink:0;border:1px solid var(--g3);border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--g5);overflow:hidden;transform:rotate(0deg) scale(1);transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1),border-color 0.3s,box-shadow 0.3s}
+.nav-logo-mark::before{content:'';position:absolute;inset:0;background:var(--g);transform:scaleY(0);transform-origin:bottom;transition:transform 0.3s cubic-bezier(0.4,0,0.2,1);z-index:0}
+.nav-logo-mark span{position:relative;z-index:1;font-weight:700;font-size:12px;color:var(--g);transition:color 0.3s}
+.nav-logo:hover .nav-logo-mark,.nav-logo.touched .nav-logo-mark,.nav-logo:focus-visible .nav-logo-mark{border-color:var(--g);box-shadow:0 0 18px rgba(0,255,65,0.5);transform:rotate(-8deg) scale(1.1)}
+.nav-logo:hover .nav-logo-mark::before,.nav-logo.touched .nav-logo-mark::before,.nav-logo:focus-visible .nav-logo-mark::before{transform:scaleY(1)}
+.nav-logo:hover .nav-logo-mark span,.nav-logo.touched .nav-logo-mark span,.nav-logo:focus-visible .nav-logo-mark span{color:var(--bg)}
+.nav-logo-text{display:flex;align-items:center}
+.nav-logo-bracket{color:var(--g2);font-size:16px;transition:color 0.3s}
+.nav-logo:hover .nav-logo-bracket,.nav-logo.touched .nav-logo-bracket,.nav-logo:focus-visible .nav-logo-bracket{color:var(--g)}
+#logo-code{display:inline-block;min-width:34px}
 .nav-links{display:flex;gap:0;list-style:none}
 .nav-links a{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tm);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;padding:0.5rem 1.1rem;transition:color 0.2s;position:relative}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:1.1rem;right:1.1rem;height:1px;background:var(--g);transform:scaleX(0);transition:transform 0.2s}
@@ -220,9 +229,10 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">
-    <span class="nav-logo-bracket">[</span>S.H.N<span class="nav-logo-bracket">]</span>
-  </div>
+  <a href="#about" class="nav-logo" id="nav-logo" aria-label="Shabani Hussein Ndekupe — back to top">
+    <span class="nav-logo-mark"><span>SH</span></span>
+    <span class="nav-logo-text"><span class="nav-logo-bracket">[</span><span id="logo-code">S.H.N</span><span class="nav-logo-bracket">]</span></span>
+  </a>
   <ul class="nav-links">
     <li><a href="#about">about</a></li>
     <li><a href="#skills">skills</a></li>
@@ -231,7 +241,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
   </ul>
   <div class="nav-right">
     <div class="nav-status"><div class="dot"></div>open to work</div>
-    <a href="https://wa.me/255696533328" target="_blank" class="nav-cta">hire me</a>
+    <a href="https://wa.me/255696533328" target="_blank" rel="noopener noreferrer" class="nav-cta">hire me</a>
   </div>
 </nav>
 
@@ -375,7 +385,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
           <span class="stk">Python</span><span class="stk">Mobile</span><span class="stk">Data Analysis</span>
         </div>
         <div class="feat-links" style="margin-top:1.25rem">
-          <a href="https://github.com/SHABAN171/LLCA-CPPM-mobile-Application" target="_blank" class="feat-link"><i class="ti ti-brand-github"></i> View code</a>
+          <a href="https://github.com/SHABAN171/LLCA-CPPM-mobile-Application" target="_blank" rel="noopener noreferrer" class="feat-link"><i class="ti ti-brand-github"></i> View code</a>
         </div>
       </div>
       <div class="project-featured-meta">
@@ -397,21 +407,21 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
         <div class="pc-title">ClassConnect</div>
         <div class="pc-desc">Student–teacher communication app. Teachers push announcements and assignments; students get real-time updates.</div>
         <div class="pc-stack"><span class="stk">C++</span><span class="stk">Mobile</span></div>
-        <a href="https://github.com/SHABAN171/ClassConnect-Mobile-App" target="_blank" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
+        <a href="https://github.com/SHABAN171/ClassConnect-Mobile-App" target="_blank" rel="noopener noreferrer" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
       </div>
       <div class="pc-wrap">
         <div class="pc-num">PRJ_003</div>
         <div class="pc-title">MediTrack System</div>
         <div class="pc-desc">Health assistant for rural communities — patient tracking, records, and healthcare access in low-resource environments.</div>
         <div class="pc-stack"><span class="stk">Django</span><span class="stk">Python</span><span class="stk">HTML</span></div>
-        <a href="https://github.com/SHABAN171/meditrack_management_backup" target="_blank" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
+        <a href="https://github.com/SHABAN171/meditrack_management_backup" target="_blank" rel="noopener noreferrer" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
       </div>
       <div class="pc-wrap">
         <div class="pc-num">PRJ_004</div>
         <div class="pc-title">EcoVibe Hub</div>
         <div class="pc-desc">Multimedia-rich website for environmental awareness — visual storytelling combined with interactive ecological content.</div>
         <div class="pc-stack"><span class="stk">HTML</span><span class="stk">CSS</span><span class="stk">JavaScript</span></div>
-        <a href="https://github.com/SHABAN171/EcoVIBE" target="_blank" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
+        <a href="https://github.com/SHABAN171/EcoVIBE" target="_blank" rel="noopener noreferrer" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
       </div>
     </div>
 
@@ -422,21 +432,21 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
         <div class="pc-title">Online Job Platform</div>
         <div class="pc-desc">Full-stack platform connecting employers and job seekers with role-based access and dynamic listings.</div>
         <div class="pc-stack"><span class="stk">PHP</span><span class="stk">MySQL</span><span class="stk">HTML</span></div>
-        <a href="https://github.com/SHABAN171/ONLINE-JOB" target="_blank" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
+        <a href="https://github.com/SHABAN171/ONLINE-JOB" target="_blank" rel="noopener noreferrer" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
       </div>
       <div class="pc-wrap">
         <div class="pc-num">PRJ_006</div>
         <div class="pc-title">Products Catalog</div>
         <div class="pc-desc">Clean, filterable product catalog with dynamic display — UX-first architecture and fast browsing experience.</div>
         <div class="pc-stack"><span class="stk">JavaScript</span><span class="stk">HTML</span><span class="stk">CSS</span></div>
-        <a href="https://github.com/SHABAN171/products-catalog" target="_blank" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
+        <a href="https://github.com/SHABAN171/products-catalog" target="_blank" rel="noopener noreferrer" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
       </div>
       <div class="pc-wrap">
         <div class="pc-num">PRJ_007</div>
         <div class="pc-title">Food Ordering App</div>
         <div class="pc-desc">PHP-based food ordering system — item listing, cart, and order management for restaurant workflows.</div>
         <div class="pc-stack"><span class="stk">PHP</span><span class="stk">MySQL</span></div>
-        <a href="https://github.com/SHABAN171/food_ordering" target="_blank" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
+        <a href="https://github.com/SHABAN171/food_ordering" target="_blank" rel="noopener noreferrer" class="pc-link"><i class="ti ti-brand-github"></i> View code</a>
       </div>
     </div>
 
@@ -453,23 +463,23 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
       <div class="contact-intro-title">Let's build something<br>worth using.</div>
       <div class="contact-intro-body">Open to full-time roles, freelance projects, and meaningful collaborations. Based in Dar es Salaam — working with teams worldwide.</div>
       <div class="contact-items">
-        <a href="https://wa.me/255696533328" target="_blank" class="ci">
+        <a href="https://wa.me/255696533328" target="_blank" rel="noopener noreferrer" class="ci">
           <i class="ti ti-brand-whatsapp"></i>
           <div class="ci-text"><span class="ci-label">WhatsApp</span><span class="ci-val">+255 696 533 328</span></div>
         </a>
-        <a href="https://github.com/SHABAN171" target="_blank" class="ci">
+        <a href="https://github.com/SHABAN171" target="_blank" rel="noopener noreferrer" class="ci">
           <i class="ti ti-brand-github"></i>
           <div class="ci-text"><span class="ci-label">GitHub</span><span class="ci-val">github.com/SHABAN171</span></div>
         </a>
-        <a href="https://www.linkedin.com/in/shaban-ndekupe-b1826a305" target="_blank" class="ci">
+        <a href="https://www.linkedin.com/in/shaban-ndekupe-b1826a305" target="_blank" rel="noopener noreferrer" class="ci">
           <i class="ti ti-brand-linkedin"></i>
           <div class="ci-text"><span class="ci-label">LinkedIn</span><span class="ci-val">shaban-ndekupe</span></div>
         </a>
-        <a href="https://www.instagram.com/s.h.a.b.a.n.i_17" target="_blank" class="ci">
+        <a href="https://www.instagram.com/s.h.a.b.a.n.i_17" target="_blank" rel="noopener noreferrer" class="ci">
           <i class="ti ti-brand-instagram"></i>
           <div class="ci-text"><span class="ci-label">Instagram</span><span class="ci-val">@s.h.a.b.a.n.i_17</span></div>
         </a>
-        <!-- <a href="https://its-shaban-s-portfolio.netlify.app/" target="_blank" class="ci">
+        <!-- <a href="https://its-shaban-s-portfolio.netlify.app/" target="_blank" rel="noopener noreferrer" class="ci">
           <i class="ti ti-world"></i>
           <div class="ci-text"><span class="ci-label">Portfolio</span><span class="ci-val">its-shaban-s-portfolio.netlify.app</span></div>
         </a> -->
@@ -501,10 +511,10 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
       <div class="footer-motto">💧 Focus. Commitment. Consistency. Repeat.</div>
     </div>
     <div class="footer-links">
-      <a href="https://github.com/SHABAN171" target="_blank" class="footer-link"><i class="ti ti-brand-github"></i></a>
-      <a href="https://www.linkedin.com/in/shaban-ndekupe-b1826a305" target="_blank" class="footer-link"><i class="ti ti-brand-linkedin"></i></a>
-      <a href="https://wa.me/255696533328" target="_blank" class="footer-link"><i class="ti ti-brand-whatsapp"></i></a>
-      <a href="https://www.instagram.com/s.h.a.b.a.n.i_17" target="_blank" class="footer-link"><i class="ti ti-brand-instagram"></i></a>
+      <a href="https://github.com/SHABAN171" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="GitHub"><i class="ti ti-brand-github"></i></a>
+      <a href="https://www.linkedin.com/in/shaban-ndekupe-b1826a305" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="LinkedIn"><i class="ti ti-brand-linkedin"></i></a>
+      <a href="https://wa.me/255696533328" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="WhatsApp"><i class="ti ti-brand-whatsapp"></i></a>
+      <a href="https://www.instagram.com/s.h.a.b.a.n.i_17" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
     </div>
   </div>
   <div class="footer-copy">© 2026 Shabani Hussein Ndekupe — Dar es Salaam, Tanzania</div>
@@ -513,6 +523,41 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
 </main>
 
 <script>
+// Logo glitch/scramble effect
+const navLogo=document.getElementById('nav-logo');
+const logoCode=document.getElementById('logo-code');
+if(navLogo&&logoCode){
+  const FINAL='S.H.N';
+  const CHARS='!<>-_\\/[]{}=+*^?#01$%';
+  let scrambleFrame=null;
+  function scrambleLogo(){
+    if(scrambleFrame)cancelAnimationFrame(scrambleFrame);
+    let progress=0;
+    const totalSteps=FINAL.length*3;
+    function step(){
+      logoCode.textContent=FINAL.split('').map((ch,i)=>{
+        if(ch==='.')return '.';
+        if(i<Math.floor(progress/3))return FINAL[i];
+        return CHARS[Math.floor(Math.random()*CHARS.length)];
+      }).join('');
+      progress++;
+      if(progress<=totalSteps){
+        scrambleFrame=setTimeout(step,35);
+      } else {
+        logoCode.textContent=FINAL;
+      }
+    }
+    step();
+  }
+  navLogo.addEventListener('mouseenter',scrambleLogo);
+  navLogo.addEventListener('focus',scrambleLogo);
+  navLogo.addEventListener('touchstart',()=>{
+    navLogo.classList.add('touched');
+    scrambleLogo();
+    setTimeout(()=>navLogo.classList.remove('touched'),1500);
+  },{passive:true});
+}
+
 // Typewriter
 const roles = ['UI/UX Developer','Full-Stack Engineer','DevOps Engineer','Problem Solver'];
 let ri=0,ci2=0,deleting=false;
