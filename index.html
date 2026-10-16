@@ -72,20 +72,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5r
 .btn-ghost{font-family:'JetBrains Mono',monospace;font-size:11px;padding:12px 28px;border-radius:3px;cursor:pointer;text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:all 0.2s;border:1px solid rgba(210,235,210,0.14);color:rgba(210,235,210,0.45);display:inline-flex;align-items:center;gap:8px}
 .btn-ghost:hover{border-color:rgba(210,235,210,0.32);color:rgba(210,235,210,0.8)}
 
-/* HERO TERMINAL CARD */
-.hero-terminal{background:var(--bg2);border:1px solid var(--g3);border-radius:6px;width:300px;flex-shrink:0;overflow:hidden;font-family:'JetBrains Mono',monospace}
-.terminal-bar{background:var(--bg3);padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border)}
-.t-dot{width:9px;height:9px;border-radius:50%}
-.t-dot.red{background:#ff5f57}.t-dot.yellow{background:#febc2e}.t-dot.green{background:#28c840}
-.terminal-title{font-size:10px;color:var(--tm);margin-left:6px;letter-spacing:0.06em}
-.terminal-body{padding:1.2rem;font-size:11px;line-height:1.9;color:var(--ts)}
-.t-line{display:flex;gap:8px}
-.t-prompt{color:var(--g2);flex-shrink:0}
-.t-cmd{color:var(--tp)}
-.t-out{color:var(--ts);padding-left:16px}
-.t-green{color:var(--g)}
-.t-muted{color:var(--tm)}
-.t-space{height:6px}
+/* HERO PHOTO (circular) */
+.hero-photo{position:relative;width:300px;height:300px;flex-shrink:0}
+.photo-circle{width:100%;height:100%;border-radius:50%;overflow:hidden;border:2px solid rgba(210,235,210,0.28);background:var(--bg3);box-shadow:0 0 40px rgba(0,255,65,0.08);transition:border-color 0.3s,box-shadow 0.3s}
+.hero-photo:hover .photo-circle{border-color:var(--g2);box-shadow:0 0 50px rgba(0,255,65,0.18)}
+.photo-circle img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+.photo-badge{position:absolute;right:4px;bottom:26px;width:56px;height:56px;border-radius:50%;background:var(--bg2);border:2px solid rgba(210,235,210,0.28);display:flex;align-items:center;justify-content:center;font-size:24px;line-height:1}
 
 /* ══ STATS BAR ══ */
 .stats-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2)}
@@ -202,7 +194,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
 /* ══ RESPONSIVE ══ */
 @media(max-width:900px){
   #about{grid-template-columns:1fr;gap:3rem}
-  .hero-terminal{width:100%;max-width:380px}
+  .hero-photo{width:260px;height:260px}
   .stats-inner{grid-template-columns:repeat(2,1fr)}
   .stat-item:nth-child(2){border-right:none}
   .skills-wrap{grid-template-columns:1fr}
@@ -260,30 +252,13 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
       <a href="#contact" class="btn-ghost"><i class="ti ti-send"></i> Get in touch</a>
     </div>
   </div>
-  <div class="hero-terminal reveal reveal-delay-2">
-    <div class="terminal-bar">
-      <div class="t-dot red"></div>
-      <div class="t-dot yellow"></div>
-      <div class="t-dot green"></div>
-      <span class="terminal-title">shabani@dev ~ whoami</span>
+
+  <!-- PHOTO -->
+  <div class="hero-photo reveal reveal-delay-2">
+    <div class="photo-circle">
+      <img src="back then 2023.png" alt="Portrait of Shabani Hussein Ndekupe" loading="eager"/>
     </div>
-    <div class="terminal-body">
-      <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">cat profile.json</span></div>
-      <div class="t-space"></div>
-      <div class="t-out"><span class="t-muted">{</span></div>
-      <div class="t-out">&nbsp;&nbsp;<span class="t-muted">"name":</span> <span class="t-green">"Shabani H."</span><span class="t-muted">,</span></div>
-      <div class="t-out">&nbsp;&nbsp;<span class="t-muted">"role":</span> <span class="t-green">"Full-Stack Dev"</span><span class="t-muted">,</span></div>
-      <div class="t-out">&nbsp;&nbsp;<span class="t-muted">"location":</span> <span class="t-green">"Dar es Salaam"</span><span class="t-muted">,</span></div>
-      <div class="t-out">&nbsp;&nbsp;<span class="t-muted">"org":</span> <span class="t-green">"ByteUjamaa"</span><span class="t-muted">,</span></div>
-      <div class="t-out">&nbsp;&nbsp;<span class="t-muted">"focus":</span> <span class="t-green">"users first"</span><span class="t-muted">,</span></div>
-      <div class="t-out">&nbsp;&nbsp;<span class="t-muted">"status":</span> <span class="t-green">"available"</span></div>
-      <div class="t-out"><span class="t-muted">}</span></div>
-      <div class="t-space"></div>
-      <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">echo $MOTTO</span></div>
-      <div class="t-out"><span class="t-green">Focus. Commitment. Consistency. Repeat.</span></div>
-      <div class="t-space"></div>
-      <div class="t-line"><span class="t-prompt">$</span><span class="typed-cursor" style="font-size:11px">_</span></div>
-    </div>
+    <div class="photo-badge" aria-hidden="true">🚀</div>
   </div>
 </section>
 
@@ -479,10 +454,6 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
           <i class="ti ti-brand-instagram"></i>
           <div class="ci-text"><span class="ci-label">Instagram</span><span class="ci-val">@s.h.a.b.a.n.i_17</span></div>
         </a>
-        <!-- <a href="https://its-shaban-s-portfolio.netlify.app/" target="_blank" rel="noopener noreferrer" class="ci">
-          <i class="ti ti-world"></i>
-          <div class="ci-text"><span class="ci-label">Portfolio</span><span class="ci-val">its-shaban-s-portfolio.netlify.app</span></div>
-        </a> -->
       </div>
     </div>
     <div class="reveal reveal-delay-2">
@@ -508,7 +479,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
   <div class="footer-inner">
     <div class="footer-left">
       <div class="footer-name">Shabani Hussein Ndekupe</div>
-      <div class="footer-motto">💧 Focus. Commitment. Consistency. Repeat.</div>
+      <div class="footer-motto">Focus. Commitment. Consistency. Repeat. 🚀</div>
     </div>
     <div class="footer-links">
       <a href="https://github.com/SHABAN171" target="_blank" rel="noopener noreferrer" class="footer-link" aria-label="GitHub"><i class="ti ti-brand-github"></i></a>
