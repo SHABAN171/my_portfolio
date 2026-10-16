@@ -114,6 +114,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5r
 .project-featured{background:var(--bg);display:grid;grid-template-columns:1fr 1fr;gap:0}
 .project-featured-content{padding:2.5rem;border-right:1px solid var(--border)}
 .project-featured-meta{padding:2.5rem;background:var(--g5)}
+.project-image{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border:1px solid var(--border);margin-bottom:1.25rem;filter:saturate(.78);transition:filter .25s,transform .25s}
+.project-image:hover{filter:saturate(1);transform:translateY(-2px)}
 .feat-badge{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--g);background:rgba(0,255,65,0.08);border:1px solid var(--g3);padding:3px 10px;border-radius:2px;letter-spacing:0.1em;text-transform:uppercase;display:inline-block;margin-bottom:1rem}
 .project-card{background:var(--bg);display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
 .pc-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tm);letter-spacing:0.1em;margin-bottom:0.7rem}
@@ -353,6 +355,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
     <!-- FEATURED -->
     <div class="project-featured">
       <div class="project-featured-content">
+        <img class="project-image" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Construction team working on an infrastructure project" loading="lazy">
         <div class="feat-badge">⭐ Featured project</div>
         <div class="feat-title">LCCA-CPPM Mobile Application</div>
         <div class="feat-desc">Helps organizations and project managers manage capital projects and analyze lifecycle costs end-to-end. Improves planning, budgeting, monitoring, and decision-making across complex infrastructure projects.</div>
@@ -379,6 +382,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
     <div class="project-card">
       <div class="pc-wrap">
         <div class="pc-num">PRJ_002</div>
+        <img class="project-image" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Students learning together in a classroom" loading="lazy">
         <div class="pc-title">ClassConnect</div>
         <div class="pc-desc">Student–teacher communication app. Teachers push announcements and assignments; students get real-time updates.</div>
         <div class="pc-stack"><span class="stk">C++</span><span class="stk">Mobile</span></div>
@@ -386,6 +390,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
       </div>
       <div class="pc-wrap">
         <div class="pc-num">PRJ_003</div>
+        <img class="project-image" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Healthcare worker using a digital patient record" loading="lazy">
         <div class="pc-title">MediTrack System</div>
         <div class="pc-desc">Health assistant for rural communities — patient tracking, records, and healthcare access in low-resource environments.</div>
         <div class="pc-stack"><span class="stk">Django</span><span class="stk">Python</span><span class="stk">HTML</span></div>
@@ -393,6 +398,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
       </div>
       <div class="pc-wrap">
         <div class="pc-num">PRJ_004</div>
+        <img class="project-image" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Sunlight filtering through a green forest" loading="lazy">
         <div class="pc-title">EcoVibe Hub</div>
         <div class="pc-desc">Multimedia-rich website for environmental awareness — visual storytelling combined with interactive ecological content.</div>
         <div class="pc-stack"><span class="stk">HTML</span><span class="stk">CSS</span><span class="stk">JavaScript</span></div>
@@ -404,6 +410,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
     <div class="project-card">
       <div class="pc-wrap">
         <div class="pc-num">PRJ_005</div>
+        <img class="project-image" src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Professionals collaborating in a modern workplace" loading="lazy">
         <div class="pc-title">Online Job Platform</div>
         <div class="pc-desc">Full-stack platform connecting employers and job seekers with role-based access and dynamic listings.</div>
         <div class="pc-stack"><span class="stk">PHP</span><span class="stk">MySQL</span><span class="stk">HTML</span></div>
@@ -411,6 +418,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
       </div>
       <div class="pc-wrap">
         <div class="pc-num">PRJ_006</div>
+        <img class="project-image" src="https://images.unsplash.com/photo-1490312278390-ab64016e0aa9?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Carefully arranged products ready for an online catalog" loading="lazy">
         <div class="pc-title">Products Catalog</div>
         <div class="pc-desc">Clean, filterable product catalog with dynamic display — UX-first architecture and fast browsing experience.</div>
         <div class="pc-stack"><span class="stk">JavaScript</span><span class="stk">HTML</span><span class="stk">CSS</span></div>
@@ -418,6 +426,7 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem}
       </div>
       <div class="pc-wrap">
         <div class="pc-num">PRJ_007</div>
+        <img class="project-image" src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="A freshly prepared meal for a food ordering service" loading="lazy">
         <div class="pc-title">Food Ordering App</div>
         <div class="pc-desc">PHP-based food ordering system — item listing, cart, and order management for restaurant workflows.</div>
         <div class="pc-stack"><span class="stk">PHP</span><span class="stk">MySQL</span></div>
